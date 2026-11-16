@@ -13,7 +13,7 @@ def read_root():
         "service": "Jenkins CI/CD Pipeline Demo",
         "version": APP_VERSION,
         "environment": DEPLOY_ENV,
-        "status": "running"
+        "status": "operational"
     }
 
 
