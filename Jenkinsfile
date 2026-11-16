@@ -43,7 +43,7 @@ pipeline {
                     docker rm -f ${APP_NAME}-staging || true
                     docker run -d --name ${APP_NAME}-staging -p ${STAGING_PORT}:8000 -e DEPLOY_ENV=staging -e APP_VERSION=1.0.${BUILD_NUMBER} ${APP_NAME}:${BUILD_NUMBER}
                     sleep 3
-                    curl -f http://localhost:${STAGING_PORT}/health
+                    curl -f http://host.docker.internal:${STAGING_PORT}/health
                 """
             }
         }
@@ -67,7 +67,7 @@ pipeline {
                     docker rm -f ${APP_NAME}-prod || true
                     docker run -d --name ${APP_NAME}-prod -p ${PROD_PORT}:8000 -e DEPLOY_ENV=production -e APP_VERSION=1.0.${BUILD_NUMBER} ${APP_NAME}:${BUILD_NUMBER}
                     sleep 3
-                    curl -f http://localhost:${PROD_PORT}/health
+                    curl -f http://host.docker.internal:${PROD_PORT}/health
                 """
             }
         }
